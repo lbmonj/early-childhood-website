@@ -41,7 +41,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.x' # Or your specific Ruby version if known
+          ruby-version: '3.3.0' # Or your specific Ruby version if known
           bundler-cache: true # speeds up subsequent runs
 
       - name: Install Jekyll dependencies
