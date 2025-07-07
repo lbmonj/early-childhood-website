@@ -9,6 +9,9 @@
     <!-- Google Fonts - Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+		html {
+			scroll-behavior: smooth;
+		}
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc; /* Light Blue-Gray */
@@ -31,27 +34,80 @@
         .content-block {
             border-left: 4px solid #93c5fd; /* Blue-300 */
         }
+		/* Style for hyperlinks within paragraphs */
+        p a {
+            color: #2563eb; /* Blue-600 for a noticeable link color */
+            text-decoration: none; /* Remove default underline */
+            font-weight: 600; /* Make links slightly bolder */
+            transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+        }
+        p a:hover {
+            color: #1d4ed8; /* Darker blue on hover */
+            text-decoration: underline; /* Add underline on hover */
+        }
+
+        /* Style for hyperlinks within list items (general lists) */
+        /* Note: Tailwind's list-disc and pl-X classes are used directly on the UL for bullets */
+        ul li a { /* Targeting links specifically within ul li elements */
+            color: #2563eb; /* Blue-600 for a noticeable link color */
+            text-decoration: none; /* Remove default underline */
+            font-weight: 600; /* Make links slightly bolder */
+            transition: color 0.2s ease-in-out, text-decoration 0.2s ease-in-out;
+        }
+        ul li a:hover {
+            color: #1d4ed8; /* Darker blue on hover */
+            text-decoration: underline; /* Add underline on hover */
+        }
+		/* Explicit styles for resource lists to ensure bullet points */
+		.resource-list {
+			list-style-type: disc !important;    /* Force disc bullets */
+			list-style-position: outside !important; /* Ensure bullets appear outside the content flow */
+			margin-left: 2rem !important;       /* Increased padding to guarantee space for bullets and align them */
+			padding-left: .5rem !important;           /* Keep margin at 0 to rely on padding for indentation */
+		}
+		
+        /* Style for the back-to-top button */
+        .back-to-top {
+            position: fixed; /* Fixes it relative to the viewport */
+            bottom: 1.5rem; /* 24px from bottom */
+            right: 1.5rem; /* 24px from right */
+            z-index: 1000; /* Ensures it stays on top of other content */
+            display: none; /* Hidden by default, will be shown by JS */
+            opacity: 0; /* Start with opacity 0 for fade-in effect */
+            transition: opacity 0.3s ease-in-out; /* Smooth fade transition */
+        }
+        .back-to-top.show {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body class="p-6 sm:p-8 md:p-12">
+	<!-- Anchor for "Back to Top" functionality -->
+    <a id="top" name="top"></a>
+	
     <div class="container mx-auto bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-12">
 
         <!-- Header -->
         <header class="text-center mb-10">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-800 mb-4 rounded-lg p-2">Early Childhood Education & School Readiness</h1>
-            <p class="text-lg text-gray-600">Supporting every child's journey to success.</p>
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-blue-800 mb-4 rounded-lg p-2">Welcome to Forest Friends Discovery Preschool</h1>
+            <p class="text-lg text-gray-600"><i>Connected by nature, kindness, and community — where all learners can discover their best selves.</i></p>
         </header>
 
         <!-- Navigation -->
         <nav class="mb-10 p-4 bg-blue-50 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold text-blue-700 mb-4 text-center">Quick Links</h2>
             <ul class="flex flex-wrap justify-center gap-4 text-center">
-                <li><a href="#introduction" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">Introduction</a></li>
-                <li><a href="#school-readiness" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">School Readiness</a></li>
-                <li><a href="#learning-influences" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">Learning Influences</a></li>
-                <li><a href="#social-emotional-learning" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">Social-Emotional Learning</a></li>
-                <li><a href="#collaboration" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">Collaboration</a></li>
-                <li><a href="#conclusion" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-lg p-2 rounded-md">Conclusion</a></li>
+                <li><a href="#introduction" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Introduction</a></li>
+				<li><a href="#impact" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Impact</a></li>
+                <li><a href="#school-readiness" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">School Readiness</a></li>
+                <li><a href="#learning-influences" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Learning Influences</a></li>
+                <li><a href="#social-emotional-learning" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Social-Emotional Learning</a></li>
+                <li><a href="#collaboration" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Collaboration</a></li>
+                <li><a href="#promise" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Our Promise</a></li>
+                <li><a href="#resources" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Resources</a></li>
+                <li><a href="#references" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">References</a></li>
+                <li><a href="#features" class="nav-link text-blue-600 hover:text-blue-800 font-medium text-base p-2 rounded-md">Key Features</a></li>
             </ul>
         </nav>
 
@@ -59,54 +115,127 @@
 
         <!-- Introduction -->
         <section id="introduction" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Introduction: The Foundation of Future Success</h2>
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Introduction: Helping Every Child Grow and Thrive at Forest Friends Discovery Preschool</h2>
             <div class="content-block pl-4 py-2">
                 <!-- Example Image Added Here -->
-                <img src="https://placehold.co/600x300/e0f2fe/0c4a6e?text=Early+Learning" alt="Children engaging in early learning" class="w-full h-auto rounded-lg mb-6 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found';">
-                <p class="mb-4 text-gray-700 leading-relaxed">Early childhood education (ECE) and intervention are not merely preparatory steps for kindergarten; they are fundamental pillars supporting a child's holistic development and long-term school readiness. Research consistently demonstrates that high-quality early learning experiences significantly impact cognitive abilities, social-emotional skills, and executive functions, all crucial for academic success and life well-being. For instance, a longitudinal study by the National Institute of Child Health and Human Development (NICHD) found that children who attended higher-quality child care had better language, cognitive, and social skills in kindergarten. Furthermore, early intervention for developmental delays or disabilities can significantly mitigate their long-term impact, preventing the widening of achievement gaps. Providing support early on ensures that children, regardless of their background or challenges, have equitable opportunities to develop essential skills before formal schooling begins. This website serves as a resource for families and educators, exploring key aspects of early childhood development, including school readiness, learning influences, social-emotional growth, and collaborative practices. To host this website for free, platforms like <strong class="text-blue-600">GitHub Pages</strong> are excellent choices. Simply create a public repository, upload this HTML file, and enable GitHub Pages in your repository settings to get a live URL in minutes.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we believe every child is a unique learner with boundless potential. We create safe, joyful spaces where children explore, play, and build strong social-emotional skills alongside a lifelong love of learning. Rooted in the natural world and inspired by the kindness of forest friends, our inclusive community nurtures curiosity, empathy, and joy in discovery.</p>
+				<!-- img src="../Pictures/Kinderbijslag1439x847.jpg" alt="Children engaging in early learning" class="w-full h-auto rounded-lg mb-6 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found';" -->
+                <p class="mb-4 text-gray-700 leading-relaxed">Our approach honors the whole child—academically, socially, emotionally, and physically—while embracing diversity and the power of connection. We partner closely with families to support each child’s journey, ensuring every little explorer feels seen, valued, and empowered. Together, we cultivate a community where kindness blooms and every child can grow into their best self.</p>
+            </div>
+        </section>
+		
+		<!-- Impact -->
+        <section id="impact" class="mb-12">
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Impact: The Importance of Early Childhood Education and Intervention</h2>
+            <div class="content-block pl-4 py-2">
+                <!-- Example Image Added Here -->
+                <!-- img src="https://placehold.co/600x300/e0f2fe/0c4a6e?text=Early+Learning" alt="Children engaging in early learning" class="w-full h-auto rounded-lg mb-6 shadow-md" onerror="this.onerror=null;this.src='https://placehold.co/600x300/cccccc/333333?text=Image+Not+Found';" -->
+                <p class="mb-4 text-gray-700 leading-relaxed">Early childhood is one of the most critical periods in a child’s development—a time of rapid brain growth when early experiences shape the foundation for learning, behavior, and lifelong well-being. Research consistently shows that children who participate in high-quality, inclusive early education are more confident, socially capable, and academically prepared when they begin kindergarten (National Institute for Early Education Research, 2021).</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we believe early intervention is not just beneficial—it’s essential. When developmental delays or differences are identified early, we can respond proactively, embedding playful, targeted supports into everyday routines and interactions. This approach helps children build skills before gaps widen, supporting more positive long-term outcomes in learning, relationships, and mental health (Guralnick, 2011).</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">Inclusive classrooms like ours give children with both typical and atypical development the chance to grow and learn side by side, fostering empathy, cooperation, and shared success. Our research-based, developmentally appropriate practices are tailored to each child’s unique needs—and grounded in strong, respectful partnerships with families. Together, we lay the foundation for every child to thrive.</p>
             </div>
         </section>
 
         <!-- School Readiness -->
         <section id="school-readiness" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">School Readiness: A Multifaceted Approach</h2>
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">School Readiness: Meeting Every Learner Where They Are</h2>
             <div class="content-block pl-4 py-2">
-                <p class="mb-4 text-gray-700 leading-relaxed">Identifying school readiness is a nuanced process that extends beyond a child's ability to recite the alphabet or count to ten. It encompasses a holistic view of development, including social, emotional, cognitive, language, and physical domains. Methods used to determine readiness often involve a combination of approaches to capture individual differences. For example, direct observation during play and structured activities provides insights into a child's social interactions, problem-solving skills, and fine motor development. Standardized developmental screenings, like the Ages & Stages Questionnaires (ASQ), can identify potential delays across various domains, prompting earlier intervention. Furthermore, parent and family input is invaluable, as they offer unique perspectives on their child's behaviors and abilities in different contexts. Acknowledging social, cultural, and linguistic diversity is paramount; a child's readiness might manifest differently based on their background. For instance, a child from a collectivistic culture might prioritize group harmony over individual assertiveness, which should not be misconstrued as a lack of readiness. Data used to determine readiness for learning includes anecdotal records from teachers detailing a child's engagement and persistence, work samples demonstrating pre-writing or pre-math skills, and informal assessments like observing a child's ability to follow multi-step directions. This multi-faceted data collection ensures a comprehensive and equitable assessment of each child's unique readiness profile.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we recognize that school readiness isn’t one-size-fits-all. It’s a holistic concept that goes beyond letters and numbers to include emotional regulation, communication, physical coordination, social skills, and cognitive development. Every child develops at their own pace and brings unique experiences shaped by family, culture, and language.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">To truly understand each child’s current level and needs, we use a variety of developmentally appropriate, culturally responsive tools. These include developmental milestone checklists, play-based assessments, anecdotal records, family interviews, and ongoing teacher observations during natural routines and play. This comprehensive approach allows us to appreciate the whole child in their real-world context.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">For example, a child may avoid group play or have trouble making eye contact at school, showing signs of atypical social development. However, their family reports that at home, the child plays cooperatively with siblings and engages in familiar routines with ease. These differences are important. They may reflect the child’s comfort level, sensory needs, or difficulty adjusting to new environments. Our staff takes time to understand these dynamics by listening to families, observing across contexts, and providing consistent, gentle support to help the child feel safe, connected, and ready to engage at school.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">By involving families in the assessment process and honoring cultural and linguistic diversity, we ensure every child is seen and supported. We believe readiness is not a fixed trait but a capacity nurtured through individualized, play-based learning and supportive experiences that build confidence and prepare each child for a successful transition to school and lifelong learning.</p>
             </div>
         </section>
 
         <!-- Learning Influences -->
         <section id="learning-influences" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Learning Influences: Embracing Diversity in the Classroom</h2>
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Learning Influences: How Culture and Family Shape Learning</h2>
             <div class="content-block pl-4 py-2">
-                <p class="mb-4 text-gray-700 leading-relaxed">Recognizing and addressing the profound influence of individual language, culture, and family backgrounds on learning is crucial for effective early childhood education. Educators employ various processes to ensure that all children feel valued and supported. Culturally responsive teaching, for instance, involves integrating students' cultural references into all aspects of learning, making the curriculum relevant and engaging. This might include using books and materials that reflect diverse family structures, traditions, and languages. Building strong home-school connections, through open communication and family engagement activities, also helps bridge potential gaps between home and school environments. For dual language learners, providing instruction in their native language alongside English acquisition support, like using visual aids and peer translation, can significantly enhance their learning outcomes. An example of this influence can be observed in a child's approach to problem-solving. A child from a culture that emphasizes communal learning might be more inclined to collaborate and seek consensus, whereas a child from a culture that values individual achievement might prefer to work independently. In atypical development, a child with a language delay whose primary language is not English might face compounded challenges. Addressing this involves not only speech therapy but also ensuring that therapists and educators understand and incorporate the child’s linguistic and cultural context into intervention strategies, perhaps by using culturally relevant materials or involving family members in therapy sessions. This integrated approach fosters an inclusive learning environment where every child's background is seen as an asset.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we understand that every child arrives with a rich history of culture, language, and family experiences that profoundly shape how they learn and grow. These differences are not barriers, but strengths that enrich our community. We celebrate the unique ways children express empathy, independence, and understanding—whether it’s through family routines in a multigenerational home or culturally specific social interactions. For example, a child from a multigenerational household might show compassion or autonomy in ways that differ from typical classroom behaviors, and recognizing this helps us respond effectively. The child from a multigenerational home might be used to comforting a grandparent by bringing them water, food, or sitting quietly beside them without being prompted. In the classroom, instead of saying “Are you okay?” to a crying peer (a typical classroom response), the child might bring the peer a toy or silently sit beside them as a way of offering comfort—less verbal, more action-based compassion.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">Our curriculum embraces diverse cultures by inviting families to share their traditions, languages, and stories through songs, books, and classroom celebrations. We use tools such as dual-language storybooks, visual supports, and inclusive communication strategies to bridge language gaps and support all learners. For example, a typically developing child from a Spanish-speaking family may confidently sing Spanish songs during circle time, showing strong language skills in their home language. A child with a speech delay from the same background may participate by clapping or using picture cards. By including Spanish music and visuals, we support both children—reinforcing language, building confidence, and honoring their culture.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">By building strong connections with families and deeply understanding each child’s background, we tailor our teaching to meet the diverse needs of children with both typical and atypical development. This inclusive approach ensures every child feels understood, valued, and empowered to thrive in our classroom community.</p>
             </div>
         </section>
 
         <!-- Social-Emotional Learning -->
         <section id="social-emotional-learning" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Social-Emotional Learning: Nurturing Whole Child Development</h2>
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Social-Emotional Learning: Helping Children Build Relationships and Resilience</h2>
             <div class="content-block pl-4 py-2">
-                <p class="mb-4 text-gray-700 leading-relaxed">Social-emotional learning (SEL) is the process through which children and adults acquire and effectively apply the knowledge, attitudes, and skills necessary to understand and manage emotions, set and achieve positive goals, feel and show empathy for others, establish and maintain positive relationships, and make responsible decisions. Key resources commonly used in early childhood settings include structured curricula like Second Step, which provides explicit lessons on empathy, emotion management, and problem-solving, or Conscious Discipline, which focuses on self-regulation and creating a "school family." These resources are supported in the classroom for students with and without exceptionalities through consistent routines, clear expectations, and responsive adult-child interactions. For example, a classroom might utilize "feeling charts" or "calm-down corners" where children can identify and regulate their emotions. Specific evidence-based instructional strategies include explicit instruction in emotional vocabulary, helping children name their feelings (e.g., "It looks like you're feeling frustrated right now"). Role-playing scenarios allow children to practice conflict resolution and social skills in a safe environment. For students with exceptionalities, these strategies are often adapted; for a child with autism, visual schedules can provide predictability that reduces anxiety and supports emotional regulation, while sensory breaks can help manage overstimulation. Providing opportunities for cooperative play and peer mediation also fosters empathy and relationship building for all students, creating a supportive and inclusive learning community.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">Social-emotional learning (SEL) is at the heart of everything we do at Forest Friends Discovery Preschool. Using evidence-based programs like Conscious Discipline and the Pyramid Model, we nurture essential skills such as empathy, self-regulation, cooperation, and problem-solving. These strategies are designed to support all children, including those with exceptionalities, by incorporating visual aids, social stories, repetition, and sensory supports.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">SEL is embedded seamlessly into daily routines—greeting each child by name, using visual emotion charts, modeling empathy, and discussing feelings through stories. For example, during a daily “feelings check-in,” children identify emotions using picture cards, allowing a child with language delays to participate fully by pointing instead of speaking.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">We also integrate social-emotional learning into play and group activities. When children build a block tower together, they practice sharing, turn-taking, communication, and conflict resolution. Calm-down corners, sensory tools, and movement breaks provide children with strategies to regulate their emotions and manage transitions smoothly.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">By fostering social-emotional skills early, we equip every child with the tools they need to build friendships, handle challenges, and thrive both academically and socially throughout their lives.</p>
             </div>
         </section>
 
         <!-- Collaboration -->
         <section id="collaboration" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Collaboration: A Partnership for Student Well-being</h2>
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Collaboration: Partnering with Families and Professionals</h2>
             <div class="content-block pl-4 py-2">
-                <p class="mb-4 text-gray-700 leading-relaxed">Effective collaboration with families and other professionals is indispensable for promoting the holistic well-being of all students, especially in early childhood. It establishes a shared understanding of a child's strengths and needs, ensuring continuity of support between home and school and fostering a consistent approach to development and learning. Procedures in place for collaboration emphasize open communication, mutual respect, and shared decision-making. This includes regular parent-teacher conferences, informal check-ins, and utilizing communication platforms to share updates and celebrate progress. One example of purposefully partnering with families is hosting "Family Learning Workshops" focused on school readiness skills. These workshops, perhaps on topics like early literacy or positive behavior strategies, empower families with practical tools and knowledge they can implement at home, strengthening the home-school connection and reinforcing learning. Another example involves inviting family members to share their cultural traditions or stories with the class, making them felt valued and integrated into the school community. For collaboration with other professionals, a key procedure is participating in regular multidisciplinary team meetings. This involves educators, therapists (e.g., speech-language pathologists, occupational therapists), school psychologists, and special education coordinators coming together to discuss student progress, share strategies, and develop individualized support plans. For instance, a teacher might collaborate with a speech therapist to integrate language goals into daily classroom activities, or work with a social worker to connect a family with community resources, ensuring a comprehensive network of support for the child's well-being.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we believe collaboration is essential to supporting every child’s growth and development. Families are the child’s first and most important teachers, and we actively include them as partners in decision-making, goal-setting, and learning. To foster strong communication and trust, we hold family-teacher chats twice a year (or more frequently by parent or teacher request) where we discuss progress, share strategies, and co-create individualized goals tailored to each child’s needs.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">We invite families to participate in classroom events and activities, such as sharing family traditions or helping develop behavior support plans, strengthening the connection between home and school. When parents raise concerns—like speech delays—we work together to try targeted strategies both at school and at home before making referrals to specialists.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">Our collaboration extends beyond families to include early intervention providers, speech and occupational therapists, special educators, and service coordinators. Our team regularly attends IEP and IFSP meetings and maintains open communication with outside professionals to ensure consistent support across all settings.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">Transparency is a core value at our preschool. We provide weekly updates, photos, and progress reports through a family communication app, keeping families connected to their child’s daily experiences and achievements. By creating a strong, coordinated network of support, we help every child thrive in a nurturing, inclusive community.</p>
             </div>
         </section>
 
-        <!-- Conclusion -->
-        <section id="conclusion" class="mb-12">
-            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Conclusion: Empowering Stakeholders for Child Success</h2>
+        <!-- Promise -->
+        <section id="promise" class="mb-12">
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Our Promise to Our Families</h2>
             <div class="content-block pl-4 py-2">
-                <p class="mb-4 text-gray-700 leading-relaxed">The information presented on this website – encompassing early childhood education, school readiness, learning influences, social-emotional development, and collaborative practices – serves as a vital resource for various stakeholders committed to nurturing young children. For families, this knowledge empowers them to become active participants in their child's educational journey, providing insights into developmental milestones, effective home learning strategies, and the importance of early intervention. Understanding the holistic nature of school readiness can alleviate pressure, allowing them to focus on their child's overall growth rather than just academic benchmarks. Educators can utilize this information to inform their instructional practices, ensuring they employ culturally responsive approaches, implement evidence-based SEL strategies, and foster strong partnerships with families and other professionals. This promotes a more inclusive and effective learning environment tailored to individual needs. Furthermore, policymakers and community stakeholders can leverage this research-backed content to advocate for increased funding, develop robust early childhood programs, and implement supportive policies that prioritize the well-being and developmental needs of all young children. Ultimately, by fostering a collective understanding and collaborative spirit among all involved parties, this information can contribute significantly to building a strong foundation for every child’s lifelong learning and success.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">At Forest Friends Discovery Preschool, we are dedicated to creating a nurturing, inclusive environment where every child is truly seen, celebrated, and supported. This webpage is designed to share how our research-based practices, respect for diversity, and strong partnerships with families guide us in fostering each child’s unique journey.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">We believe that the early years lay the foundation for lifelong learning, social-emotional growth, and well-being. By working together—with families, educators, and professionals—we can ensure every child receives the joyful, strong start they deserve to thrive in school and beyond.</p>
+                <p class="mb-4 text-gray-700 leading-relaxed">We hope this resource gives families confidence in our commitment and reminds you that we are partners in your child’s development, every step of the way.</p>
             </div>
         </section>
 
+        <!-- Resources -->
+        <section id="resources" class="mb-12">
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Helpful Resources for Families</h2>
+            <div class="content-block pl-4 py-2">
+				<ul class="mb-4 text-gray-700 leading-relaxed">
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><a href="https://www.cdc.gov/ncbddd/actearly/milestones-app.html" target="_blank" rel="noopener noreferrer">CDC Milestone Tracker</a> — Track your child’s development</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><a href="https://www.naeyc.org/our-work/for-families" target="_blank" rel="noopener noreferrer">NAEYC for Families</a> — Early childhood education insights</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><a href="https://consciousdiscipline.com/methodology/" target="_blank" rel="noopener noreferrer">Conscious Discipline</a> — Social-emotional learning framework</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><a href="https://challengingbehavior.org/pyramid-model/overview/basics/" target="_blank" rel="noopener noreferrer">Pyramid Model for Social-Emotional Competence</a> — Support for SEL</li>
+				</ul>
+            </div>
+        </section>
+		
+        <!-- References -->
+        <section id="references" class="mb-12">
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">References</h2>
+            <div class="content-block pl-4 py-2">
+                <ul>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Guralnick, M. J. (2011). <i>Why early intervention works: A systems perspective.</i> Infants & Young Children, 24(1), 6–28.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">National Institute for Early Education Research. (2021). <i>The State of Preschool Yearbook.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">National Association for the Education of Young Children (NAEYC). (2020). <i>Developmentally Appropriate Practice Position Statement.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Pianta, R., Barnett, W.S., Justice, L.M., & Sheridan, S. (2014). <i>Handbook of Early Childhood Education.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">CASEL. (2023). <i>Core Competencies for Social Emotional Learning.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Gonzalez-Mena, J. (2008). Foundations of Early Childhood Education: <i>Teaching Children in a Diverse Society.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Rossetti, Z. (2021). <i>Working with Families of Children with Special Needs: Family and Professional Partnerships and Roles.</i> Pearson.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Division for Early Childhood & NAEYC. (2009). <i>Early Childhood Inclusion Position Statement.</i></li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list">Center on the Social and Emotional Foundations for Early Learning. <i>Pyramid Model for Social-Emotional Competence.</i></li>
+				</ul>
+            </div>
+        </section>
+		
+        <!-- Features -->
+        <section id="features" class="mb-12">
+            <h2 class="section-heading text-3xl font-bold p-4 mb-6 rounded-lg">Key Features of Our Program</h2>
+            <div class="content-block pl-4 py-2">
+				<ul>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Inclusion and Diversity:</b> These programs welcome children with typical and diverse needs, including disabilities, fostering environments where every child is valued and respected. Children learn together through play, exploration, and social interaction, which builds empathy, acceptance, and understanding of differences.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Developmental Approach:</b> Programs follow developmentally appropriate curricula addressing cognitive, physical, language, social-emotional, and academic skills. Teachers individualize instruction based on each child’s abilities and progress, often using authentic observations and assessments.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Play-Based Learning:</b> Play is central, supporting active learning and social interactions. Music therapy and hands-on activities further aid development.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Family Involvement:</b> Strong partnerships with families are encouraged through open communication, conferences, classroom participation, and support, recognizing family engagement as critical to child success.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Specialized Support:</b> Programs often collaborate with clinical and therapeutic services (speech, occupational, physical therapy) embedded within the school day to support children with additional needs.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Philosophy of Inclusion:</b> Rooted in national standards (DEC/NAEYC), inclusion means full participation, belonging, and access to quality education for all children. Inclusive practices benefit children with and without disabilities.</li>
+					<li class="mb-4 text-gray-700 leading-relaxed resource-list"><b>Holistic Development:</b> Centers focus on the whole child, including health, character, life skills, and social-emotional foundations, ensuring children are prepared not just academically but also emotionally and socially for school and life.</li>
+				</ul>
+			</div>
+        </section>
+		
         <!-- Footer -->
         <footer class="text-center mt-10 pt-6 border-t-2 border-blue-200 text-gray-500 text-sm">
             <p>&copy; 2025 Early Childhood Education & School Readiness. All rights reserved.</p>
@@ -114,5 +243,26 @@
         </footer>
 
     </div>
+	
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top p-4 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+        </svg>
+    </a>
+
+    <script>
+        // Get the button
+        const backToTopButton = document.querySelector(".back-to-top");
+
+        // When the user scrolls down 100px from the top of the document, show the button
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.classList.add("show");
+            } else {
+                backToTopButton.classList.remove("show");
+            }
+        };
+    </script>
 </body>
 </html>
